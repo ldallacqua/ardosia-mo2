@@ -19,7 +19,7 @@ for n in sorted(os.listdir(COMP)):
 links = ''.join(f'<li><a href="{n}.html">{n}</a></li>' for n in pages)
 open(os.path.join(DOCS, 'index.html'), 'w', encoding='utf-8').write(
     f'<!doctype html><meta charset="utf-8"><title>Ardósia — prévias</title>'
-    f'<body style="background:#171B21;color:#D9DFE6;font-family:Segoe UI,Inter,sans-serif;padding:32px">'
+    f'<body style="background:#171B21;color:#D9DFE6;font-family:Inter,Segoe UI,sans-serif;padding:32px">'
     f'<h1>Ardósia — prévias ({theme})</h1><ul>{links}</ul></body>')
 print(f'{len(pages)} prévias em docs/')
 if '--png' in sys.argv:

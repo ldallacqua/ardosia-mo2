@@ -64,7 +64,7 @@ Log: `log-info` `#7FB8F0`, `log-warning` `#E5B350`, `log-error` `#F27A72` e `log
 
 ## Tipografia
 
-Família: `"Segoe UI Variable Text", "Segoe UI"` no Windows (Inter fica de fallback nas prévias). Monoespaçada: `"Cascadia Mono", Consolas`. Em QSS use pt. Equivalência a 96 dpi: 10pt ≈ 13px e 9pt = 12px.
+Família: `"Inter Variable", "Inter", "Segoe UI Variable Text", "Segoe UI"`. A Inter precisa ser instalada no Windows; sem ela, o tema usa a Segoe UI. A versão variável vem primeiro porque não tem hinting, ao contrário da `Inter.ttc`. O motor de fontes não pode ser definido no QSS; o texto mais suave vem do FreeType, ativado pelo atalho opcional `extras/MO2 FreeType.cmd`. O `qt.conf` não teve efeito no MO2 2.5.2. Monoespaçada: `"Cascadia Mono", Consolas`. Em QSS use pt. Equivalência a 96 dpi: 10pt ≈ 13px e 9pt = 12px.
 
 | Estilo | QSS | Uso |
 |---|---|---|
@@ -85,14 +85,16 @@ Família: `"Segoe UI Variable Text", "Segoe UI"` no Windows (Inter fica de fallb
 
 ## Iconografia
 
-O tema traz 19 SVGs de 16px no grupo de assets **QSS**: check (escuro, para ir sobre o acento), parcial, desabilitado, chevrons neutros e, para cada acento, setas de ordenação e de ramo da árvore. Referencie-os no .qss com caminho relativo à pasta do tema, por exemplo `url(./ardosia/check.svg)`. Os ícones da toolbar e os glifos das colunas Conflitos/Flags vêm do próprio MO2 e não mudam com o .qss. Nos mockups eles aparecem em `text-secondary` como referência.
+O tema traz 31 SVGs exportados com tamanho intrínseco de 64px no grupo de assets **QSS**. São 19 de controles, desenhados em 16px: check (escuro, para ir sobre o acento), parcial, desabilitado, chevrons neutros e, para cada acento, setas de ordenação e de ramo da árvore. Os outros 12 são da barra de ferramentas (`tb-*`), desenhados em 24px. O MO2 não traz o plugin `iconengines/qsvgicon`, então o Qt rasteriza o SVG no tamanho intrínseco e reescala; com 16px, os ícones ficariam borrados em telas acima de 100%. Por isso, toda regra com `image` precisa de `width` e `height` no .qss. Referencie-os com caminho relativo à pasta do tema, por exemplo `url(./ardosia/check.svg)`.
+
+Os ícones da toolbar são trocados com `#actionSettings { qproperty-icon: url(...); }`: o MO2 lê esses seletores e aplica o ícone na barra e no menu. Eles têm tinta fixa em `text-secondary`, porque o QSS não recolore ícones; Problemas usa `log-warning`. Os glifos das colunas Conflitos/Flags, o selo numérico de Problemas e os ícones dos executáveis fixados vêm do próprio MO2.
 
 ## Limites do QSS (o que depende do MO2)
 
 - **Destaque dos separadores.** Uma regra QSS não consegue selecionar só as linhas de separador. O fundo vem da cor de separador do MO2 (use `separator-bg`). A seta de acento vem de `::branch`, e o peso do texto depende da versão do MO2. Não dá para dar altura extra a uma única linha: a altura é uniforme.
 - **Mods desativados esmaecidos.** O próprio MO2 pinta esse texto. `text-inactive` é a referência visual, e nas listas de plugins o comportamento é o mesmo.
 - **Hover nas listas.** Se você definir `::item:hover { background }`, a cor de conflito some sob o cursor. Por isso o tema muda só `color`.
-- **Barra de título.** É nativa do Windows e fica fora do QSS.
+- **Barra de título.** É nativa do Windows e fica fora do QSS. O plugin opcional `plugin/ArdosiaTitleBar.py` a pinta em `bg-0`, com texto `text-secondary`.
 - **Placeholder dos campos.** A cor vem da paleta do Qt (PlaceholderText), não de uma propriedade do QSS. O valor de referência é `text-inactive`.
 
 A referência seletor por seletor, com todos os valores prontos para o .qss, está na seção **Referência QSS**.

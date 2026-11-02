@@ -22,7 +22,7 @@
 
 /* ==================== Base ==================== */
 * {
-  font-family: "Segoe UI Variable Text", "Segoe UI";
+  font-family: "Inter Variable", "Inter", "Segoe UI Variable Text", "Segoe UI";
   font-size: 10pt;                       /* body */
 }
 QWidget {
@@ -47,6 +47,20 @@ QToolButton:pressed { background: #39414C; border-color: #47515E; }
 QToolButton:checked { background: rgba(51, 199, 155, 0.12); color: #4FD1AA; }
 QToolButton::menu-indicator { image: none; }
 
+/* O MO2 lê o ícone destes seletores e o aplica na barra e no menu */
+#actionChange_Game { qproperty-icon: url(./ardosia/tb-instances.svg); }
+#actionInstallMod { qproperty-icon: url(./ardosia/tb-install.svg); }
+#actionNexus, #actionModPage { qproperty-icon: url(./ardosia/tb-nexus.svg); }
+#actionAdd_Profile { qproperty-icon: url(./ardosia/tb-profile.svg); }
+#action_Refresh { qproperty-icon: url(./ardosia/tb-refresh.svg); }
+#actionModify_Executables { qproperty-icon: url(./ardosia/tb-exe.svg); }
+#actionTool { qproperty-icon: url(./ardosia/tb-tools.svg); }
+#actionSettings { qproperty-icon: url(./ardosia/tb-settings.svg); }
+#actionEndorseMO { qproperty-icon: url(./ardosia/tb-endorse.svg); }
+#actionNotifications { qproperty-icon: url(./ardosia/tb-problems.svg); }
+#actionUpdate { qproperty-icon: url(./ardosia/tb-update.svg); }
+#actionHelp { qproperty-icon: url(./ardosia/tb-help.svg); }
+
 QMenuBar { background: #171B21; padding: 0 6px; }
 QMenuBar::item { padding: 4px 10px; border-radius: 4px; background: transparent; }
 QMenuBar::item:selected { background: #2F3640; color: #F2F5F8; }
@@ -68,7 +82,7 @@ QPushButton:hover    { background: #2F3640; border-color: #47515E; }
 QPushButton:pressed  { background: #39414C; border-color: #47515E; }
 QPushButton:focus    { border-color: #33C79B; }                        /* focus-ring */
 QPushButton:disabled { background: #1C2128; border-color: #252B33; color: #525B67; }
-QPushButton::menu-indicator { image: url(./ardosia/chevron-down.svg); subcontrol-position: right center; right: 6px; }
+QPushButton::menu-indicator { image: url(./ardosia/chevron-down.svg); width: 16px; height: 16px; subcontrol-position: right center; right: 6px; }
 
 /* Primário: Executar */
 QPushButton#startButton { background: #33C79B; border-color: #33C79B; color: #14181D; font-weight: 600; }

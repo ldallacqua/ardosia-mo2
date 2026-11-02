@@ -2,8 +2,11 @@
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'design', 'icons')
 os.makedirs(OUT, exist_ok=True)
-def w(n, body):
-    open(os.path.join(OUT, n), 'w').write(f'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke-linecap="round" stroke-linejoin="round">{body}</svg>\n')
+# O MO2 não traz o plugin iconengines/qsvgicon: o Qt rasteriza o SVG no tamanho intrínseco e depois
+# reescala. Por isso o tamanho intrínseco é 64px, para ficar nítido em qualquer escala de tela; o
+# tamanho na tela vem do width/height no .qss.
+def w(n, body, view='0 0 16 16'):
+    open(os.path.join(OUT, n), 'w').write(f'<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="{view}" fill="none" stroke-linecap="round" stroke-linejoin="round">{body}</svg>\n')
 w('check.svg', '<path d="M3.5 8.3 6.6 11.4 12.6 4.8" stroke="#14181D" stroke-width="2.2"/>')
 w('check-partial.svg', '<path d="M4 8h8" stroke="#14181D" stroke-width="2.2"/>')
 w('check-disabled.svg', '<path d="M3.5 8.3 6.6 11.4 12.6 4.8" stroke="#7B8696" stroke-width="2.2"/>')
@@ -14,6 +17,26 @@ w('chevron-down-disabled.svg', '<path d="M4.5 6.5 8 10l3.5-3.5" stroke="#525B67"
 for t, c in [('ambar', '#E9B35E'), ('gelo', '#8DCDEE'), ('esmeralda', '#4FD1AA')]:
     w(f'sort-up-{t}.svg', f'<path d="M4.5 9.5 8 6l3.5 3.5" stroke="{c}" stroke-width="2"/>')
     w(f'sort-down-{t}.svg', f'<path d="M4.5 6.5 8 10l3.5-3.5" stroke="{c}" stroke-width="2"/>')
-    w(f'branch-closed-{t}.svg', f'<path d="M6.5 4.5 10 8l-3.5 3.5" stroke="{c}" stroke-width="2"/>')
-    w(f'branch-open-{t}.svg', f'<path d="M4.5 6.5 8 10l3.5-3.5" stroke="{c}" stroke-width="2"/>')
+    # ::branch ocupa o recuo de 20px da árvore: a margem no viewBox mantém o desenho em escala 1:1
+    w(f'branch-closed-{t}.svg', f'<path d="M6.5 4.5 10 8l-3.5 3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
+    w(f'branch-open-{t}.svg', f'<path d="M4.5 6.5 8 10l3.5-3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
+# Barra de ferramentas: mesmos desenhos de build_mockups.py (grade de 24px, traço de 1,6). A tinta é fixa porque o
+# QSS não recolore ícones; Problemas usa log-warning, como no mockup.
+TOOLBAR = {
+ 'instances': '<rect x="4" y="8" width="12" height="12" rx="2"/><path d="M8 4.5h9.5a2 2 0 0 1 2 2V16"/>',
+ 'install': '<path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5z"/><path d="M12 9v7M9 13l3 3 3-3"/>',
+ 'nexus': '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.4 2.3 3.5 5 3.5 8s-1.1 5.7-3.5 8c-2.4-2.3-3.5-5-3.5-8S9.6 6.3 12 4z"/>',
+ 'profile': '<circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c1.2-3.3 3.9-5 7-5s5.8 1.7 7 5"/>',
+ 'refresh': '<path d="M19 12a7 7 0 0 1-12.2 4.7M5 12a7 7 0 0 1 12.2-4.7"/><path d="M17.5 3.8v3.6h-3.6M6.5 20.2v-3.6h3.6"/>',
+ 'exe': '<rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M7.5 10l2.5 2-2.5 2M12.5 14.5h4"/>',
+ 'tools': '<path d="M14.5 5.5a4 4 0 0 0-5 5L4 16l2 2 5.5-5.5a4 4 0 0 0 5-5l-2.3 2.3-2-2z"/>',
+ 'settings': '<circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4 18 18M6 18l1.6-1.6M16.4 7.6 18 6"/>',
+ 'endorse': '<path d="M12 19.5s-7-4.2-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.3c0 5-7 9.2-7 9.2z"/>',
+ 'problems': '<path d="M12 4.5 20.5 19h-17z"/><path d="M12 10v4M12 16.6v.1"/>',
+ 'update': '<circle cx="12" cy="12" r="8"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/>',
+ 'help': '<circle cx="12" cy="12" r="8"/><path d="M9.8 9.6a2.3 2.3 0 1 1 3.2 2.1c-.7.3-1 .8-1 1.5v.4M12 16.4v.1"/>',
+}
+for n, body in TOOLBAR.items():
+    c = '#E5B350' if n == 'problems' else '#97A2B0'
+    w(f'tb-{n}.svg', f'<g stroke="{c}" stroke-width="1.6">{body}</g>', '0 0 24 24')
 print('ícones ok')

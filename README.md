@@ -22,7 +22,7 @@ Base cinza-azulada, uma única cor de destaque e os conflitos sempre à vista.
 ![Janela principal do Mod Organizer 2 com o tema Ardósia no acento Âmbar](docs/screenshots/MainWindow-ambar.png)
 
 > [!NOTE]
-> As imagens são mockups de design, não capturas do MO2 rodando. Fontes e ícones da barra de ferramentas podem variar na sua instalação.
+> As imagens são mockups de design, não capturas do MO2 rodando. Fontes, tamanhos e os ícones de outros botões podem variar na sua instalação.
 
 ## Por que Ardósia
 
@@ -30,6 +30,7 @@ Base cinza-azulada, uma única cor de destaque e os conflitos sempre à vista.
 - **As cores do MO2 mandam.** O tema não define fundo para os itens da lista, nem em hover. Só a seleção tem fundo próprio, então as cores de conflito continuam aparecendo.
 - **Destaque com moderação.** O acento aparece só onde importa: botão Executar, checkbox marcado, aba ativa, foco, seta de ordenação e seta dos separadores.
 - **Estrutura de relance.** Os separadores têm um tom próprio e seta na cor de destaque, e os mods desativados ficam esmaecidos, mas legíveis.
+- **Barra de ferramentas própria.** Os ícones coloridos do MO2 dão lugar a desenhos em linha, em um único tom.
 - **Estados sempre visíveis.** Todo controle tem hover, pressionado, foco e desabilitado.
 
 ## Três acentos, uma base
@@ -91,6 +92,12 @@ As variantes para arquivos BSA usam os mesmos tons, mais suaves.
 
 **4. Pinte os separadores.** A cor de separador é definida em cada um: selecione os separadores, clique com o botão direito e use **Select Color...** com `#2A3546`. O MO2 reaplica a última cor usada nos separadores novos. Para ter a seta na cor de destaque, ative os separadores recolhíveis em **Settings › Mod List › Collapsible Separators**.
 
+**5. Escureça a barra de título (opcional).** Ela é nativa do Windows e fica fora do QSS. Para pintá-la nas cores do tema, copie `plugin/ArdosiaTitleBar.py` para a pasta `plugins/` do MO2 e reinicie o programa. A cor exata exige Windows 11, e o plugin só age com um tema Ardósia ativo.
+
+**6. Instale a fonte (opcional).** O tema prefere a [Inter](https://github.com/rsms/inter/releases/latest), gratuita, e usa a Segoe UI se ela não estiver instalada. Baixe o `.zip`, instale `InterVariable.ttf` e `InterVariable-Italic.ttf` e reinicie o MO2.
+
+**7. Suavize o texto (opcional).** O motor de fontes padrão pode deixar a Inter com bordas duras. Para usar o FreeType, copie `extras/MO2 FreeType.cmd` para a pasta do `ModOrganizer.exe` e abra o MO2 por esse arquivo, ou por um atalho para ele. Abrindo o `ModOrganizer.exe` direto, o MO2 volta ao motor padrão. O `qt.conf` não funcionou no MO2 2.5.2.
+
 > [!TIP]
 > Se os ícones não aparecerem (checkbox marcado sem o check, setas faltando), troque `url(./ardosia/` por `url(./stylesheets/ardosia/` no `.qss`.
 
@@ -113,7 +120,7 @@ Tipografia, espaçamento, raios e todos os tokens estão no [guia de design](des
 
 - O QSS não consegue mirar só as linhas de separador. O destaque delas vem da cor de separador do MO2 e da seta de acento em `::branch`.
 - O texto esmaecido dos mods desativados e os ícones das colunas Conflitos e Flags são desenhados pelo próprio MO2.
-- A barra de título é nativa do Windows e fica fora do QSS.
+- A barra de título é nativa do Windows e fica fora do QSS. Sem o plugin opcional, ela segue o padrão do sistema.
 - Os nomes de objeto usados pelo tema (`#logList`, `#startButton`) são os do MO2 2.4 e 2.5.
 
 <details>
@@ -121,13 +128,15 @@ Tipografia, espaçamento, raios e todos os tokens estão no [guia de design](des
 
 ```
 stylesheets/            .qss compilados + ícones (o que vai para o MO2)
+plugin/                 plugin opcional que pinta a barra de título
+extras/                 atalho opcional que abre o MO2 com o FreeType
 design/
   tokens.json           fonte da verdade: cores (3 temas), tipografia, espaçamento, raios, dimensões
   tokens.css            variáveis CSS geradas (para as prévias)
   GUIA.md               guia de design: paleta, tipografia, princípios, limites do QSS
   qss-reference.md      especificação seletor por seletor, fonte dos .qss
   ICONES.md             descrição dos ícones
-  icons/                ícones SVG de 16px
+  icons/                ícones SVG (exportados em 64px)
   components/           prévias HTML (mockups + estados de cada componente) e bundle.css
 scripts/                geradores (Python 3)
 docs/                   prévias autônomas em HTML (abra docs/index.html), screenshots e imagens do README

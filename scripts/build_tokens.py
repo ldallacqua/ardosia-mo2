@@ -86,7 +86,7 @@ tokens = {
     "type": {
         "fonts": [],
         "families": {
-            "sans": "\"Segoe UI Variable Text\", \"Segoe UI\", Inter, system-ui, sans-serif",
+            "sans": "\"Inter Variable\", Inter, \"Segoe UI Variable Text\", \"Segoe UI\", system-ui, sans-serif",
             "mono": "\"Cascadia Mono\", \"JetBrains Mono\", Consolas, monospace",
         },
         "groups": [
