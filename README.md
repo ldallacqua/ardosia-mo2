@@ -149,3 +149,7 @@ python scripts/build_all.py --png    # + capturas PNG em docs/
 - Para mudar uma cor nas prévias, edite `scripts/build_tokens.py`, que gera `tokens.json` e `tokens.css`.
 
 </details>
+
+## Licença
+
+[MIT](LICENSE)
