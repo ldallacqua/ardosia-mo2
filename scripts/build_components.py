@@ -75,7 +75,7 @@ page('Checkbox', 'Controles', 400, '::indicator — 16px, acento quando marcado'
 tabs = (f'<div class="ar-tabs"><span class="ar-tab is-active">Plugins<span class="count">20/22</span></span><span class="ar-tab">Arquivos (BSA)</span>'
         f'<span class="ar-tab is-hover">Data</span><span class="ar-tab">Saves</span><span class="ar-tab is-disabled">Downloads</span></div>'
         f'<div class="ar-pane" style="height:70px;width:640px"></div>')
-labels = grid(4, [cell('::tab:selected', 'bg bg-2 (= pane) · text-strong 600\nborder 1px border, sem base\nborder-top 2px accent\nradius 6 6 0 0 · pad 6 16', ''),
+labels = grid(4, [cell('::tab:selected', 'bg bg-2 (= pane) · text-strong 600\nborder 1px border, sem base\nborder-top 2px accent\ntopo reto · pad 6 16', ''),
                   cell('::tab (normal)', 'bg transparent\ncolor text-secondary', ''), cell('::tab:hover', 'bg bg-3\ncolor text-strong', ''),
                   cell('::tab:disabled', 'color text-disabled', '')])
 page('Tabs', 'Controles', 300, 'QTabBar e QTabWidget::pane', '<div class="spec-h">QTabWidget</div>' + tabs + '<div style="height:20px"></div>' + labels)

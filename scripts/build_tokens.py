@@ -120,7 +120,7 @@ tokens = {
     "radius": {"tokens": [
         {"name": "radius-sm", "value": "3px", "usage": "Checkbox (::indicator), badges."},
         {"name": "radius-md", "value": "4px", "usage": "Botões, QToolButton, campos, QComboBox, handle da scrollbar, QMenu::item."},
-        {"name": "radius-lg", "value": "6px", "usage": "Abas (só cantos de cima), QTabWidget::pane, QMenu, QToolTip, QGroupBox, moldura das views."},
+        {"name": "radius-lg", "value": "6px", "usage": "QTabWidget::pane, QMenu, QToolTip, QGroupBox."},
     ]},
     "size": {"tokens": [
         {"name": "row-height", "value": "26px", "usage": "Altura de linha das views = 18px de texto + 2×4px de padding no ::item (o padrão do Qt é ~20px)."},

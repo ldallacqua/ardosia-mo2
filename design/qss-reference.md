@@ -80,6 +80,9 @@ QPushButton#startButton:hover    { background: #ECB965; border-color: #ECB965; }
 QPushButton#startButton:pressed  { background: #C48D34; border-color: #C48D34; }
 QPushButton#startButton:focus    { border-color: #F2F5F8; }
 QPushButton#startButton:disabled { background: #262C35; border-color: #252B33; color: #525B67; }
+
+/* O layout dos botões deste diálogo herda spacing 0 no MO2, e o QSS não define spacing de layout */
+#QueryOverwriteDialog QPushButton { margin-left: 8px; }
 ```
 
 ## Campos e combos
@@ -129,9 +132,9 @@ QCheckBox { spacing: 8px; }
 
 ```css
 QTabWidget::pane { background: #1C2128; border: 1px solid #323A45; border-radius: 6px; border-top-left-radius: 0; top: -1px; }
+QTabBar { background: transparent; }   /* deixa a borda do painel aparecer sob as abas não selecionadas */
 QTabBar::tab { background: transparent; color: #97A2B0; border: 1px solid transparent; border-bottom: none;
-  border-top: 2px solid transparent; border-top-left-radius: 6px; border-top-right-radius: 6px;
-  padding: 6px 16px; margin-right: 2px; }
+  border-top: 2px solid transparent; padding: 6px 16px; margin-right: 2px; }
 QTabBar::tab:hover    { background: #262C35; color: #F2F5F8; }
 QTabBar::tab:selected { background: #1C2128; color: #F2F5F8; font-weight: 600;
   border-color: #323A45; border-top: 2px solid #E2A74A; }
@@ -144,7 +147,7 @@ QTabBar::tab:disabled { color: #525B67; }
 QAbstractItemView {
   background: #1C2128;                    /* bg-2 */
   alternate-background-color: #20262E;    /* bg-2-alt */
-  border: 1px solid #323A45; border-radius: 6px;
+  border: 1px solid #323A45;              /* sem raio: cabeçalho e linhas cobririam a curva do canto */
   outline: 0; show-decoration-selected: 1;
 }
 QTreeView { qproperty-indentation: 20; }
@@ -188,7 +191,7 @@ QScrollBar::add-page, QScrollBar::sub-page { background: none; }
 
 ```css
 #logList, QPlainTextEdit[readOnly="true"] {
-  background: #12161B; font-family: "Cascadia Mono", Consolas; font-size: 9pt; border: 1px solid #323A45; border-radius: 4px; }
+  background: #12161B; font-family: "Cascadia Mono", Consolas; font-size: 9pt; border: 1px solid #323A45; }
 QGroupBox { border: 1px solid #323A45; border-radius: 6px; margin-top: 14px; padding-top: 8px; }
 QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 4px; color: #97A2B0; font-weight: 600; }
 QDockWidget::title { background: #171B21; padding: 6px 12px; color: #97A2B0; font-weight: 600; }

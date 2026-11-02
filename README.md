@@ -92,11 +92,11 @@ As variantes para arquivos BSA usam os mesmos tons, mais suaves.
 
 **4. Pinte os separadores.** A cor de separador é definida em cada um: selecione os separadores, clique com o botão direito e use **Select Color...** com `#2A3546`. O MO2 reaplica a última cor usada nos separadores novos. Para ter a seta na cor de destaque, ative os separadores recolhíveis em **Settings › Mod List › Collapsible Separators**.
 
-**5. Escureça a barra de título (opcional).** Ela é nativa do Windows e fica fora do QSS. Para pintá-la nas cores do tema, copie `plugin/ArdosiaTitleBar.py` para a pasta `plugins/` do MO2 e reinicie o programa. A cor exata exige Windows 11, e o plugin só age com um tema Ardósia ativo.
+**5. Instale o plugin (opcional).** Ele faz o que o QSS não alcança: pinta a barra de título nas cores do tema e desliga o hinting das fontes, o que regulariza o espaçamento entre as letras. Copie `plugin/ArdosiaTweaks.py` para a pasta `plugins/` do MO2 e reinicie o programa. A cor exata da barra exige Windows 11, e o plugin só age com um tema Ardósia ativo.
 
 **6. Instale a fonte (opcional).** O tema prefere a [Inter](https://github.com/rsms/inter/releases/latest), gratuita, e usa a Segoe UI se ela não estiver instalada. Baixe o `.zip`, instale `InterVariable.ttf` e `InterVariable-Italic.ttf` e reinicie o MO2.
 
-**7. Suavize o texto (opcional).** O motor de fontes padrão pode deixar a Inter com bordas duras. Para usar o FreeType, copie `extras/MO2 FreeType.cmd` para a pasta do `ModOrganizer.exe` e abra o MO2 por esse arquivo, ou por um atalho para ele. Abrindo o `ModOrganizer.exe` direto, o MO2 volta ao motor padrão. O `qt.conf` não funcionou no MO2 2.5.2.
+**7. Suavize o texto (opcional).** O motor de fontes padrão pode deixar a Inter com bordas duras. Para usar o FreeType, copie `extras/MO2 FreeType.cmd` para a pasta do `ModOrganizer.exe` e abra o MO2 por esse arquivo, ou por um atalho para ele. Abrindo o `ModOrganizer.exe` direto, o MO2 volta ao motor padrão. O `qt.conf` não funcionou no MO2 2.5.2. Use junto com o plugin do passo 5: sem ele, o FreeType deixa o espaçamento entre as letras irregular.
 
 > [!TIP]
 > Se os ícones não aparecerem (checkbox marcado sem o check, setas faltando), troque `url(./ardosia/` por `url(./stylesheets/ardosia/` no `.qss`.
@@ -128,7 +128,7 @@ Tipografia, espaçamento, raios e todos os tokens estão no [guia de design](des
 
 ```
 stylesheets/            .qss compilados + ícones (o que vai para o MO2)
-plugin/                 plugin opcional que pinta a barra de título
+plugin/                 plugin opcional: barra de título e espaçamento das fontes
 extras/                 atalho opcional que abre o MO2 com o FreeType
 design/
   tokens.json           fonte da verdade: cores (3 temas), tipografia, espaçamento, raios, dimensões

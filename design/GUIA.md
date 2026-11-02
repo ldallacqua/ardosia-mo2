@@ -79,7 +79,8 @@ Família: `"Inter Variable", "Inter", "Segoe UI Variable Text", "Segoe UI"`. A I
 
 - Linha de lista: **26px** (texto de 18px + `padding: 4px 8px` no `::item`). Cabeçalho: 26px. Controles: 28px. Abas: 30px. Toolbar: botões de 36px com ícone de 24px.
 - Escala de espaçamento: 2 · 4 · 6 · 8 · 12 · 16 · 24px. Painéis com 8–10px de margem; controles na mesma barra com 8px de gap.
-- Raios: `radius-sm` 3px (checkbox), `radius-md` 4px (botões, campos, handle, item de menu), `radius-lg` 6px (abas no topo, painel, menus, tooltip, molduras).
+- Raios: `radius-sm` 3px (checkbox), `radius-md` 4px (botões, campos, handle, item de menu), `radius-lg` 6px (painel, menus, tooltip, grupos). As abas têm topo reto, porque a borda de acento de 2px fazia uma curva ruim no raio.
+- Listas e log têm cantos retos: o Qt não recorta os widgets filhos, então cabeçalho e linhas cobririam a curva e abririam um buraco na borda.
 - Todas as bordas têm 1px. A única exceção é o indicador da aba ativa: `border-top: 2px` em `accent`.
 - Checkbox de 16px (o padrão do Qt é 13px). Scrollbar de 12px, com handle de 8px e sem setas.
 
@@ -94,7 +95,8 @@ Os ícones da toolbar são trocados com `#actionSettings { qproperty-icon: url(.
 - **Destaque dos separadores.** Uma regra QSS não consegue selecionar só as linhas de separador. O fundo vem da cor de separador do MO2 (use `separator-bg`). A seta de acento vem de `::branch`, e o peso do texto depende da versão do MO2. Não dá para dar altura extra a uma única linha: a altura é uniforme.
 - **Mods desativados esmaecidos.** O próprio MO2 pinta esse texto. `text-inactive` é a referência visual, e nas listas de plugins o comportamento é o mesmo.
 - **Hover nas listas.** Se você definir `::item:hover { background }`, a cor de conflito some sob o cursor. Por isso o tema muda só `color`.
-- **Barra de título.** É nativa do Windows e fica fora do QSS. O plugin opcional `plugin/ArdosiaTitleBar.py` a pinta em `bg-0`, com texto `text-secondary`.
+- **Barra de título.** É nativa do Windows e fica fora do QSS. O plugin opcional `plugin/ArdosiaTweaks.py` a pinta em `bg-0`, com texto `text-secondary`.
+- **Espaçamento entre letras.** O FreeType do Qt no Windows usa hinting total por padrão e arredonda a largura de cada letra para pixels inteiros. O QSS não define hinting; é o mesmo plugin que pede `PreferNoHinting`.
 - **Placeholder dos campos.** A cor vem da paleta do Qt (PlaceholderText), não de uma propriedade do QSS. O valor de referência é `text-inactive`.
 
 A referência seletor por seletor, com todos os valores prontos para o .qss, está na seção **Referência QSS**.

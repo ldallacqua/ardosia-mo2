@@ -1,9 +1,13 @@
-# Pinta a barra de título do MO2 nas cores do Ardósia, porque ela é nativa do Windows e fica fora do QSS.
+# Ajustes do Ardósia que o QSS não alcança:
+# - pinta a barra de título, que é nativa do Windows. A cor exata exige Windows 11; no Windows 10 recente,
+#   a barra fica só no escuro padrão do sistema.
+# - desliga o hinting das fontes. No Windows, o FreeType do Qt usa hinting total por padrão e arredonda a
+#   largura de cada letra para pixels inteiros, o que deixa o espaçamento irregular.
 # Instalação: copie este arquivo para <MO2>/plugins/ e reinicie o MO2. Só age com um tema Ardósia ativo.
-# A cor exata exige Windows 11; no Windows 10 recente, a barra fica só no escuro padrão do sistema.
 import ctypes
 from ctypes import wintypes
 
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QApplication
 
 import mobase
@@ -43,7 +47,11 @@ def paint(hwnd, attributes):
         )
 
 
-class ArdosiaTitleBar(mobase.IPlugin):
+def isArdosia():
+    return "Ardosia" in QApplication.instance().styleSheet()
+
+
+class ArdosiaTweaks(mobase.IPlugin):
     def __init__(self):
         super().__init__()
         self._painted = set()
@@ -51,17 +59,17 @@ class ArdosiaTitleBar(mobase.IPlugin):
     def init(self, organizer):
         # focusWindowChanged cobre as janelas novas e, ao voltar de Settings, a troca de tema
         QApplication.instance().focusWindowChanged.connect(self._onFocusWindowChanged)
-        organizer.onUserInterfaceInitialized(lambda window: self._update(int(window.winId())))
+        organizer.onUserInterfaceInitialized(self._onUserInterfaceInitialized)
         return True
 
     def name(self):
-        return "Ardosia Title Bar"
+        return "Ardosia Tweaks"
 
     def author(self):
         return "Ardosia"
 
     def description(self):
-        return "Pinta a barra de título nas cores do tema Ardósia."
+        return "Pinta a barra de título e regulariza o espaçamento das fontes no tema Ardósia."
 
     def version(self):
         return mobase.VersionInfo(1, 0, 0, mobase.ReleaseType.FINAL)
@@ -69,12 +77,28 @@ class ArdosiaTitleBar(mobase.IPlugin):
     def settings(self):
         return []
 
+    def _onUserInterfaceInitialized(self, window):
+        self._disableHinting()
+        self._update(int(window.winId()))
+
     def _onFocusWindowChanged(self, window):
         if window is not None:
+            self._disableHinting()
             self._update(int(window.winId()))
 
+    def _disableHinting(self):
+        if not isArdosia():
+            return
+        # Com QSS, os widgets não herdam o hinting de QApplication nem da janela: o ajuste precisa ser
+        # feito em cada um. O QSS continua mandando na família e no tamanho.
+        for widget in QApplication.allWidgets():
+            font = widget.font()
+            if font.hintingPreference() != QFont.HintingPreference.PreferNoHinting:
+                font.setHintingPreference(QFont.HintingPreference.PreferNoHinting)
+                widget.setFont(font)
+
     def _update(self, hwnd):
-        if "Ardosia" in QApplication.instance().styleSheet():
+        if isArdosia():
             paint(hwnd, ARDOSIA)
             self._painted.add(hwnd)
         elif hwnd in self._painted:
@@ -83,4 +107,4 @@ class ArdosiaTitleBar(mobase.IPlugin):
 
 
 def createPlugin():
-    return ArdosiaTitleBar()
+    return ArdosiaTweaks()
