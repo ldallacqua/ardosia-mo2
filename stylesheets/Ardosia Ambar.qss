@@ -1,0 +1,183 @@
+/*
+ * Ardósia — Âmbar
+ * Tema escuro para Mod Organizer 2 (Qt Style Sheet)
+ *
+ * Instalação: copie este arquivo e a pasta "ardosia" para <MO2>/stylesheets/
+ * e escolha "Ardosia Ambar" em Settings > Theme > Style.
+ *
+ * Cores que NÃO ficam no .qss — defina em Settings > Theme > Colors:
+ *   Is overwriting (loose files) ......... #50BE643D
+ *   Is overwritten (loose files) ......... #E8564E47
+ *   Is overwriting (archives) ............ #50BE641C
+ *   Is overwritten (archives) ............ #E8564E1F
+ *   Mod contains selected file ........... #9680F042
+ *   Plugin is contained in selected mod .. #9680F042
+ *   (#RRGGBBAA — no seletor de cor do MO2, ajuste o canal Alfa)
+ *
+ * Separadores: clique direito no separador > Select Color... > #2A3546
+ *
+ * Regra do tema: nenhum background em ::item / ::item:hover, para não
+ * cobrir as cores de conflito e de separador que o MO2 pinta nas linhas.
+ */
+
+/* ==================== Base ==================== */
+* {
+  font-family: "Segoe UI Variable Text", "Segoe UI";
+  font-size: 10pt;                       /* body */
+}
+QWidget {
+  background-color: #171B21;             /* bg-1 */
+  color: #D9DFE6;                        /* text-primary */
+  selection-background-color: rgba(226, 167, 74, 0.24);   /* selection */
+  selection-color: #F2F5F8;              /* text-strong */
+}
+QWidget:disabled { color: #525B67; }     /* text-disabled */
+QMainWindow::separator, QSplitter::handle { background: #171B21; width: 6px; height: 6px; }
+QSplitter::handle:hover { background: rgba(226, 167, 74, 0.12); }   /* accent-subtle */
+QStatusBar { background: #171B21; border-top: 1px solid #323A45; color: #97A2B0; font-size: 9pt; }
+QStatusBar::item { border: none; }
+
+/* ==================== Barra de ferramentas e menus ==================== */
+QToolBar { background: #171B21; border: none; border-bottom: 1px solid #323A45; padding: 6px 10px; spacing: 4px;
+           qproperty-iconSize: 24px 24px; }
+QToolBar::separator { background: #323A45; width: 1px; margin: 6px 8px; }
+QToolButton { background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 5px; color: #97A2B0; }
+QToolButton:hover   { background: #2F3640; border-color: #323A45; color: #F2F5F8; }
+QToolButton:pressed { background: #39414C; border-color: #47515E; }
+QToolButton:checked { background: rgba(226, 167, 74, 0.12); color: #E9B35E; }
+QToolButton::menu-indicator { image: none; }
+
+QMenuBar { background: #171B21; padding: 0 6px; }
+QMenuBar::item { padding: 4px 10px; border-radius: 4px; background: transparent; }
+QMenuBar::item:selected { background: #2F3640; color: #F2F5F8; }
+
+QMenu { background: #20262E; border: 1px solid #47515E; border-radius: 6px; padding: 4px; }
+QMenu::item { padding: 5px 24px 5px 12px; border-radius: 4px; min-height: 18px; background: transparent; }
+QMenu::item:selected { background: rgba(226, 167, 74, 0.24); color: #F2F5F8; }
+QMenu::item:disabled { color: #525B67; background: transparent; }
+QMenu::separator { height: 1px; background: #323A45; margin: 4px 6px; }
+QMenu::icon { padding-left: 8px; }
+QMenu::right-arrow { image: url(./ardosia/chevron-right.svg); width: 16px; height: 16px; }
+QMenu::indicator:checked { image: url(./ardosia/check.svg); background: #E2A74A; border-radius: 3px; width: 14px; height: 14px; }
+
+QToolTip { background: #2C333D; color: #D9DFE6; border: 1px solid #47515E; border-radius: 6px; padding: 6px 8px; font-size: 9pt; }
+
+/* ==================== Botões ==================== */
+QPushButton { background: #262C35; border: 1px solid #323A45; border-radius: 4px; padding: 5px 12px; min-height: 16px; color: #D9DFE6; }
+QPushButton:hover    { background: #2F3640; border-color: #47515E; }
+QPushButton:pressed  { background: #39414C; border-color: #47515E; }
+QPushButton:focus    { border-color: #E2A74A; }                        /* focus-ring */
+QPushButton:disabled { background: #1C2128; border-color: #252B33; color: #525B67; }
+QPushButton::menu-indicator { image: url(./ardosia/chevron-down.svg); subcontrol-position: right center; right: 6px; }
+
+/* Primário: Executar */
+QPushButton#startButton { background: #E2A74A; border-color: #E2A74A; color: #14181D; font-weight: 600; }
+QPushButton#startButton:hover    { background: #ECB965; border-color: #ECB965; }
+QPushButton#startButton:pressed  { background: #C48D34; border-color: #C48D34; }
+QPushButton#startButton:focus    { border-color: #F2F5F8; }
+QPushButton#startButton:disabled { background: #262C35; border-color: #252B33; color: #525B67; }
+
+/* ==================== Campos e combos ==================== */
+QLineEdit, QSpinBox, QDoubleSpinBox, QPlainTextEdit, QTextEdit {
+  background: #12161B; border: 1px solid #323A45; border-radius: 4px; padding: 4px 8px; min-height: 18px; color: #D9DFE6; }
+QLineEdit:hover, QSpinBox:hover, QPlainTextEdit:hover { border-color: #47515E; }
+QLineEdit:focus, QSpinBox:focus, QPlainTextEdit:focus, QTextEdit:focus { border-color: #E2A74A; }
+QLineEdit:disabled, QSpinBox:disabled { background: #171B21; border-color: #252B33; color: #525B67; }
+
+QComboBox { background: #262C35; border: 1px solid #323A45; border-radius: 4px; padding: 4px 8px; min-height: 18px; }
+QComboBox:hover    { background: #2F3640; border-color: #47515E; }
+QComboBox:focus, QComboBox:on { border-color: #E2A74A; }
+QComboBox:disabled { background: #1C2128; border-color: #252B33; color: #525B67; }
+QComboBox:editable { background: #12161B; }
+QComboBox::drop-down { width: 22px; border: none; border-left: 1px solid #252B33; subcontrol-origin: padding; subcontrol-position: right center; }
+QComboBox::down-arrow { image: url(./ardosia/chevron-down.svg); width: 14px; height: 14px; }
+QComboBox::down-arrow:disabled { image: url(./ardosia/chevron-down-disabled.svg); }
+QComboBox QAbstractItemView { background: #20262E; border: 1px solid #47515E; padding: 4px; outline: 0;
+  selection-background-color: rgba(226, 167, 74, 0.24); selection-color: #F2F5F8; }
+QComboBox QAbstractItemView::item { min-height: 26px; padding: 0 8px; border-radius: 4px; }
+
+QSpinBox::up-button, QSpinBox::down-button { width: 18px; border: none; background: transparent; }
+QSpinBox::up-arrow   { image: url(./ardosia/chevron-up.svg);   width: 12px; height: 12px; }
+QSpinBox::down-arrow { image: url(./ardosia/chevron-down.svg); width: 12px; height: 12px; }
+
+/* ==================== Checkboxes (listas e QCheckBox) ==================== */
+QAbstractItemView::indicator, QCheckBox::indicator, QGroupBox::indicator {
+  width: 16px; height: 16px; border: 1px solid #6B7684; border-radius: 3px; background: #12161B; }
+QAbstractItemView::indicator:unchecked:hover, QCheckBox::indicator:unchecked:hover { border-color: #E2A74A; }
+QAbstractItemView::indicator:checked, QCheckBox::indicator:checked {
+  background: #E2A74A; border-color: #E2A74A; image: url(./ardosia/check.svg); }
+QAbstractItemView::indicator:checked:hover, QCheckBox::indicator:checked:hover { background: #ECB965; border-color: #ECB965; }
+QAbstractItemView::indicator:indeterminate, QCheckBox::indicator:indeterminate {
+  background: #E2A74A; border-color: #E2A74A; image: url(./ardosia/check-partial.svg); }
+QAbstractItemView::indicator:disabled, QCheckBox::indicator:disabled { background: transparent; border-color: #323A45; }
+QAbstractItemView::indicator:checked:disabled, QCheckBox::indicator:checked:disabled {
+  background: #2F3640; border-color: #2F3640; image: url(./ardosia/check-disabled.svg); }
+QCheckBox { spacing: 8px; }
+
+/* ==================== Abas ==================== */
+QTabWidget::pane { background: #1C2128; border: 1px solid #323A45; border-radius: 6px; border-top-left-radius: 0; top: -1px; }
+QTabBar::tab { background: transparent; color: #97A2B0; border: 1px solid transparent; border-bottom: none;
+  border-top: 2px solid transparent; border-top-left-radius: 6px; border-top-right-radius: 6px;
+  padding: 6px 16px; margin-right: 2px; }
+QTabBar::tab:hover    { background: #262C35; color: #F2F5F8; }
+QTabBar::tab:selected { background: #1C2128; color: #F2F5F8; font-weight: 600;
+  border-color: #323A45; border-top: 2px solid #E2A74A; }
+QTabBar::tab:disabled { color: #525B67; }
+
+/* ==================== Listas e árvores (modList, espList, Data, Saves, Downloads) ==================== */
+QAbstractItemView {
+  background: #1C2128;                    /* bg-2 */
+  alternate-background-color: #20262E;    /* bg-2-alt */
+  border: 1px solid #323A45; border-radius: 6px;
+  outline: 0; show-decoration-selected: 1;
+}
+QTreeView { qproperty-indentation: 20; }
+/* NÃO definir background em ::item nem em ::item:hover: o MO2 pinta conflitos/separadores ali */
+QAbstractItemView::item { padding: 4px 8px; border: none; min-height: 18px; }   /* linha de 26px */
+QAbstractItemView::item:hover { color: #F2F5F8; }
+QAbstractItemView::item:selected:active   { background: rgba(226, 167, 74, 0.24); color: #F2F5F8; }
+QAbstractItemView::item:selected:!active  { background: rgba(151, 162, 176, 0.18); color: #F2F5F8; }
+
+QTreeView::branch { background: transparent; }
+QTreeView::branch:has-children:!has-siblings:closed, QTreeView::branch:closed:has-children:has-siblings {
+  image: url(./ardosia/branch-closed-ambar.svg); }
+QTreeView::branch:open:has-children:!has-siblings, QTreeView::branch:open:has-children:has-siblings {
+  image: url(./ardosia/branch-open-ambar.svg); }
+
+QHeaderView { background: #171B21; border: none; }
+QHeaderView::section { background: #171B21; color: #97A2B0; font-size: 9pt; font-weight: 600;
+  padding: 4px 8px; min-height: 18px; border: none; border-right: 1px solid #252B33; border-bottom: 1px solid #323A45; }
+QHeaderView::section:hover   { background: #2F3640; color: #F2F5F8; }
+QHeaderView::section:pressed { background: #39414C; }
+QHeaderView::up-arrow   { image: url(./ardosia/sort-up-ambar.svg);   width: 12px; height: 12px; subcontrol-position: center right; right: 6px; }
+QHeaderView::down-arrow { image: url(./ardosia/sort-down-ambar.svg); width: 12px; height: 12px; subcontrol-position: center right; right: 6px; }
+QTableCornerButton::section { background: #171B21; border: none; }
+
+/* ==================== Barras de rolagem ==================== */
+QScrollBar:vertical   { background: #1C2128; width: 12px;  margin: 0; border: none; border-left: 1px solid #252B33; }
+QScrollBar:horizontal { background: #1C2128; height: 12px; margin: 0; border: none; border-top: 1px solid #252B33; }
+QScrollBar::handle { background: #39414C; border-radius: 4px; }
+QScrollBar::handle:vertical   { min-height: 32px; margin: 2px; }
+QScrollBar::handle:horizontal { min-width: 32px;  margin: 2px; }
+QScrollBar::handle:hover   { background: #47515E; }
+QScrollBar::handle:pressed { background: #7B8696; }
+QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; border: none; background: none; }
+QScrollBar::add-page, QScrollBar::sub-page { background: none; }
+
+/* ==================== Log, grupos e diálogos ==================== */
+#logList, QPlainTextEdit[readOnly="true"] {
+  background: #12161B; font-family: "Cascadia Mono", Consolas; font-size: 9pt; border: 1px solid #323A45; border-radius: 4px; }
+QGroupBox { border: 1px solid #323A45; border-radius: 6px; margin-top: 14px; padding-top: 8px; }
+QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 4px; color: #97A2B0; font-weight: 600; }
+QDockWidget::title { background: #171B21; padding: 6px 12px; color: #97A2B0; font-weight: 600; }
+QProgressBar { background: #12161B; border: 1px solid #323A45; border-radius: 4px; text-align: center; min-height: 14px; }
+QProgressBar::chunk { background: #E2A74A; border-radius: 3px; }
+
+/* ==================== Ajustes de herança ==================== */
+/* QWidget pinta bg-1; páginas de aba e rótulos precisam herdar o fundo do painel */
+QTabWidget > QStackedWidget { background: transparent; }
+QTabWidget > QStackedWidget > QWidget { background: #1C2128; }
+QLabel, QCheckBox, QRadioButton { background: transparent; }
+QAbstractScrollArea > QWidget { background: transparent; }
+QAbstractItemView > QWidget { background: transparent; }
+QToolTip { opacity: 255; }

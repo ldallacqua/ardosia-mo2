@@ -1,0 +1,50 @@
+<!-- @dsCard height=300 -->
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Ardósia — capa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: var(--bg-1); }
+  .cv { position: relative; width: 960px; height: 300px; overflow: hidden; background: var(--bg-1); font-family: var(--font-sans); }
+  svg { position: absolute; left: 0; top: 0; }
+  .slab { fill: var(--separator-bg); }
+  .deep { fill: var(--bg-0); }
+  .acc { fill: var(--accent); }
+  .row { fill: var(--bg-3); }
+  .row2 { fill: var(--bg-4); }
+  .ok { fill: var(--flag-overwrite); }
+  .ko { fill: var(--flag-overwritten); }
+  .rel { fill: var(--flag-both); }
+  .r { rx: 4px; ry: 4px; }
+  .rl { rx: 6px; ry: 6px; }
+  .name { position: absolute; left: 40px; bottom: 92px; font-size: 104px; line-height: .95; font-weight: 700; color: var(--text-strong); letter-spacing: -0.02em; }
+  .tag { position: absolute; left: 44px; bottom: 36px; font-size: 14px; line-height: 18px; color: var(--text-secondary); max-width: 440px; }
+</style></head><body>
+<div class="cv">
+<svg width="960" height="300" viewBox="0 0 960 300">
+  <!-- blocks: separator-bg slab 200x300 (bleeds top/bottom), bg-0 panel 240x300, accent 104x52 (radius-lg), status chips flag-overwrite/flag-overwritten/flag-both 52x26 (radius-md)
+       arrangement: one tall slab with satellites, right of x=480, bleeding off top and right like the MO2 window edge
+       pattern: dense UI rows → list rows at the 26px row-height pitch, cut with radius-md, some merged two-wide like columns
+       steps: row-height 26, space-md 8, space-lg 12; radii radius-md 4, radius-lg 6 -->
+  <rect class="slab" x="520" y="0" width="200" height="300"/>
+  <rect class="deep" x="720" y="0" width="240" height="300"/>
+  <rect class="acc rl" x="540" y="24" width="104" height="52"/>
+  <rect class="row r" x="540" y="96" width="160" height="18"/>
+  <rect class="row r" x="540" y="122" width="120" height="18"/>
+  <rect class="row2 r" x="540" y="148" width="160" height="18"/>
+  <rect class="row r" x="540" y="174" width="96" height="18"/>
+  <rect class="row r" x="540" y="200" width="140" height="18"/>
+  <rect class="row r" x="740" y="24" width="200" height="18"/>
+  <rect class="ok r" x="740" y="50" width="52" height="18"/><rect class="row r" x="800" y="50" width="140" height="18"/>
+  <rect class="ko r" x="740" y="76" width="52" height="18"/><rect class="row r" x="800" y="76" width="140" height="18"/>
+  <rect class="row r" x="740" y="102" width="200" height="18"/>
+  <rect class="rel r" x="740" y="128" width="52" height="18"/><rect class="row r" x="800" y="128" width="140" height="18"/>
+  <rect class="row r" x="740" y="154" width="200" height="18"/>
+  <rect class="row2 r" x="740" y="180" width="200" height="18"/>
+  <rect class="row r" x="740" y="206" width="200" height="18"/>
+  <rect class="ok r" x="740" y="232" width="52" height="18"/><rect class="row r" x="800" y="232" width="140" height="18"/>
+  <rect class="row r" x="740" y="258" width="200" height="18"/>
+</svg>
+<div class="name">Ardósia</div>
+<div class="tag">Tema escuro para o Mod Organizer 2: legível por horas, uma cor de destaque, conflitos sempre visíveis.</div>
+</div>
+</body></html>

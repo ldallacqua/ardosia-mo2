@@ -1,0 +1,324 @@
+<!-- @dsCard group="Listas" height=210 width=960 subtitle="QHeaderView::section e indicador de ordenação" -->
+<!doctype html>
+<html data-theme="ambar"><head><style>/* Ardósia — gerado de tokens.json por scripts/build_tokens.py */
+:root, [data-theme="ambar"] {
+  --bg-0: #12161b;
+  --bg-1: #171b21;
+  --bg-2: #1c2128;
+  --bg-2-alt: #20262e;
+  --bg-3: #262c35;
+  --bg-4: #2f3640;
+  --bg-5: #39414c;
+  --surface-menu: #20262e;
+  --surface-tooltip: #2c333d;
+  --separator-bg: #2a3546;
+  --border-subtle: #252b33;
+  --border: #323a45;
+  --border-strong: #47515e;
+  --border-control: #6b7684;
+  --text-strong: #f2f5f8;
+  --text-primary: #d9dfe6;
+  --text-secondary: #97a2b0;
+  --text-inactive: #7b8696;
+  --text-disabled: #525b67;
+  --text-on-accent: #14181d;
+  --conflict-overwriting: rgba(80, 190, 100, 0.24);
+  --conflict-overwritten: rgba(232, 86, 78, 0.28);
+  --conflict-overwriting-archive: rgba(80, 190, 100, 0.11);
+  --conflict-overwritten-archive: rgba(232, 86, 78, 0.12);
+  --related-highlight: rgba(150, 128, 240, 0.26);
+  --flag-overwrite: #6fd08a;
+  --flag-overwritten: #f27a72;
+  --flag-both: #c9a6ff;
+  --flag-redundant: #7d8896;
+  --log-info: #7fb8f0;
+  --log-warning: #e5b350;
+  --log-error: #f27a72;
+  --log-debug: #7b8696;
+  --accent: #e2a74a;
+  --accent-hover: #ecb965;
+  --accent-pressed: #c48d34;
+  --accent-text: #e9b35e;
+  --selection: rgba(226, 167, 74, 0.24);
+  --selection-inactive: rgba(151, 162, 176, 0.18);
+  --accent-subtle: rgba(226, 167, 74, 0.12);
+  --focus-ring: var(--accent);
+}
+[data-theme="gelo"] {
+  --bg-0: #12161b;
+  --bg-1: #171b21;
+  --bg-2: #1c2128;
+  --bg-2-alt: #20262e;
+  --bg-3: #262c35;
+  --bg-4: #2f3640;
+  --bg-5: #39414c;
+  --surface-menu: #20262e;
+  --surface-tooltip: #2c333d;
+  --separator-bg: #2a3546;
+  --border-subtle: #252b33;
+  --border: #323a45;
+  --border-strong: #47515e;
+  --border-control: #6b7684;
+  --text-strong: #f2f5f8;
+  --text-primary: #d9dfe6;
+  --text-secondary: #97a2b0;
+  --text-inactive: #7b8696;
+  --text-disabled: #525b67;
+  --text-on-accent: #14181d;
+  --conflict-overwriting: rgba(80, 190, 100, 0.24);
+  --conflict-overwritten: rgba(232, 86, 78, 0.28);
+  --conflict-overwriting-archive: rgba(80, 190, 100, 0.11);
+  --conflict-overwritten-archive: rgba(232, 86, 78, 0.12);
+  --related-highlight: rgba(150, 128, 240, 0.26);
+  --flag-overwrite: #6fd08a;
+  --flag-overwritten: #f27a72;
+  --flag-both: #c9a6ff;
+  --flag-redundant: #7d8896;
+  --log-info: #7fb8f0;
+  --log-warning: #e5b350;
+  --log-error: #f27a72;
+  --log-debug: #7b8696;
+  --accent: #7cc6ea;
+  --accent-hover: #98d3f0;
+  --accent-pressed: #5daed6;
+  --accent-text: #8dcdee;
+  --selection: rgba(124, 198, 234, 0.22);
+  --selection-inactive: rgba(151, 162, 176, 0.18);
+  --accent-subtle: rgba(124, 198, 234, 0.11);
+  --focus-ring: var(--accent);
+}
+[data-theme="esmeralda"] {
+  --bg-0: #12161b;
+  --bg-1: #171b21;
+  --bg-2: #1c2128;
+  --bg-2-alt: #20262e;
+  --bg-3: #262c35;
+  --bg-4: #2f3640;
+  --bg-5: #39414c;
+  --surface-menu: #20262e;
+  --surface-tooltip: #2c333d;
+  --separator-bg: #2a3546;
+  --border-subtle: #252b33;
+  --border: #323a45;
+  --border-strong: #47515e;
+  --border-control: #6b7684;
+  --text-strong: #f2f5f8;
+  --text-primary: #d9dfe6;
+  --text-secondary: #97a2b0;
+  --text-inactive: #7b8696;
+  --text-disabled: #525b67;
+  --text-on-accent: #14181d;
+  --conflict-overwriting: rgba(160, 200, 70, 0.24);
+  --conflict-overwritten: rgba(232, 86, 78, 0.28);
+  --conflict-overwriting-archive: rgba(160, 200, 70, 0.11);
+  --conflict-overwritten-archive: rgba(232, 86, 78, 0.12);
+  --related-highlight: rgba(150, 128, 240, 0.26);
+  --flag-overwrite: #6fd08a;
+  --flag-overwritten: #f27a72;
+  --flag-both: #c9a6ff;
+  --flag-redundant: #7d8896;
+  --log-info: #7fb8f0;
+  --log-warning: #e5b350;
+  --log-error: #f27a72;
+  --log-debug: #7b8696;
+  --accent: #33c79b;
+  --accent-hover: #52d4ad;
+  --accent-pressed: #27a882;
+  --accent-text: #4fd1aa;
+  --selection: rgba(51, 199, 155, 0.26);
+  --selection-inactive: rgba(151, 162, 176, 0.18);
+  --accent-subtle: rgba(51, 199, 155, 0.12);
+  --focus-ring: var(--accent);
+}
+:root {
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 6px;
+  --space-md: 8px;
+  --space-lg: 12px;
+  --space-xl: 16px;
+  --space-2xl: 24px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --row-height: 26px;
+  --header-height: 26px;
+  --control-height: 28px;
+  --tab-height: 30px;
+  --toolbar-icon: 24px;
+  --toolbar-button: 36px;
+  --checkbox-size: 16px;
+  --scrollbar-size: 12px;
+  --scroll-handle-min: 32px;
+  --splitter-size: 6px;
+  --border-width: 1px;
+  --tab-indicator: 2px;
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", Inter, system-ui, sans-serif;
+  --font-mono: "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+}
+
+/* Ardósia — classes de prévia que espelham o .qss (cada regra cita o seletor Qt equivalente). */
+.ar, .ar * { box-sizing: border-box; }
+.ar { font-family: var(--font-sans); font-size: 13px; line-height: 18px; color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+.ar svg { display: block; flex: none; }
+
+/* ---------- QPushButton */
+.ar-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--bg-3); color: var(--text-primary); font: inherit; white-space: nowrap; }
+.ar-btn:hover, .ar-btn.is-hover { background: var(--bg-4); border-color: var(--border-strong); }
+.ar-btn.is-pressed { background: var(--bg-5); border-color: var(--border-strong); }
+.ar-btn.is-focus { border-color: var(--focus-ring); }
+.ar-btn.is-disabled { background: var(--bg-2); border-color: var(--border-subtle); color: var(--text-disabled); }
+/* #startButton */
+.ar-btn--primary { background: var(--accent); border-color: var(--accent); color: var(--text-on-accent); font-weight: 600; }
+.ar-btn--primary:hover, .ar-btn--primary.is-hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.ar-btn--primary.is-pressed { background: var(--accent-pressed); border-color: var(--accent-pressed); }
+.ar-btn--primary.is-focus { border-color: var(--text-strong); }
+.ar-btn--primary.is-disabled { background: var(--bg-3); border-color: var(--border-subtle); color: var(--text-disabled); }
+
+/* ---------- QToolButton (QToolBar) */
+.ar-tool { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid transparent;
+  border-radius: var(--radius-md); color: var(--text-secondary); background: transparent; }
+.ar-tool:hover, .ar-tool.is-hover { background: var(--bg-4); border-color: var(--border); color: var(--text-strong); }
+.ar-tool.is-pressed { background: var(--bg-5); border-color: var(--border-strong); color: var(--text-strong); }
+.ar-tool.is-checked { background: var(--accent-subtle); border-color: transparent; color: var(--accent-text); }
+.ar-tool.is-disabled { color: var(--text-disabled); }
+.ar-tool .badge { position: absolute; top: 3px; right: 2px; min-width: 15px; height: 15px; padding: 0 4px; border-radius: var(--radius-sm); background: var(--log-warning);
+  color: var(--text-on-accent); font-size: 11px; line-height: 15px; font-weight: 700; text-align: center; }
+
+/* ---------- QLineEdit / QComboBox */
+.ar-input { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--bg-0); color: var(--text-primary); min-width: 0; }
+.ar-input .ph { color: var(--text-inactive); }
+.ar-input .ico { color: var(--text-inactive); }
+.ar-input:hover, .ar-input.is-hover { border-color: var(--border-strong); }
+.ar-input.is-focus { border-color: var(--focus-ring); }
+.ar-input.is-disabled { background: var(--bg-1); border-color: var(--border-subtle); color: var(--text-disabled); }
+.ar-input.is-disabled .ph, .ar-input.is-disabled .ico { color: var(--text-disabled); }
+.ar-input .sel { background: var(--selection); color: var(--text-strong); }
+.ar-input .caret { display: inline-block; width: 1px; height: 15px; background: var(--text-strong); margin-left: -5px; }
+.ar-combo { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 0 0 8px; border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--bg-3); color: var(--text-primary); white-space: nowrap; }
+.ar-combo .val { flex: 1; display: flex; align-items: center; gap: 6px; overflow: hidden; }
+.ar-combo .dd { width: 22px; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); border-left: 1px solid var(--border-subtle); }
+.ar-combo:hover, .ar-combo.is-hover { background: var(--bg-4); border-color: var(--border-strong); }
+.ar-combo.is-focus { border-color: var(--focus-ring); }
+.ar-combo.is-open { border-color: var(--focus-ring); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.ar-combo.is-disabled { background: var(--bg-2); border-color: var(--border-subtle); color: var(--text-disabled); }
+.ar-combo.is-disabled .dd { color: var(--text-disabled); }
+
+/* ---------- ::indicator */
+.ar-check { width: 16px; height: 16px; flex: none; border: 1px solid var(--border-control); border-radius: var(--radius-sm); background: var(--bg-0);
+  display: inline-flex; align-items: center; justify-content: center; color: var(--text-on-accent); }
+.ar-check.is-hover { border-color: var(--accent); }
+.ar-check.is-checked, .ar-check.is-partial { background: var(--accent); border-color: var(--accent); }
+.ar-check.is-checked.is-hover, .ar-check.is-partial.is-hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.ar-check.is-disabled { background: transparent; border-color: var(--border); }
+.ar-check.is-checked.is-disabled { background: var(--bg-4); border-color: var(--bg-4); color: var(--text-inactive); }
+.ar-check svg { width: 12px; height: 12px; }
+
+/* ---------- QTabBar / QTabWidget::pane */
+.ar-tabs { display: flex; align-items: flex-end; gap: 2px; padding-left: 0; }
+.ar-tab { height: 30px; padding: 0 16px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; border-bottom: none;
+  border-top: 2px solid transparent; border-radius: var(--radius-lg) var(--radius-lg) 0 0; color: var(--text-secondary); background: transparent; white-space: nowrap; }
+.ar-tab:hover, .ar-tab.is-hover { background: var(--bg-3); color: var(--text-strong); }
+.ar-tab.is-active { background: var(--bg-2); color: var(--text-strong); font-weight: 600; border-color: var(--border); border-top: 2px solid var(--accent);
+  position: relative; z-index: 1; margin-bottom: -1px; height: 31px; }
+.ar-tab.is-disabled { color: var(--text-disabled); }
+.ar-tab .count { font-size: 11px; color: var(--text-inactive); font-weight: 400; }
+.ar-pane { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg); }
+
+/* ---------- views (QTreeView#modList, QTreeView#espList, ...) */
+.ar-view { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+.ar-head { display: flex; height: 26px; background: var(--bg-1); border-bottom: 1px solid var(--border); flex: none; }
+.ar-hcell { display: flex; align-items: center; gap: 4px; padding: 0 8px; border-right: 1px solid var(--border-subtle); color: var(--text-secondary);
+  font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; }
+.ar-hcell:last-child { border-right: none; }
+.ar-hcell.is-hover { background: var(--bg-4); color: var(--text-strong); }
+.ar-hcell.is-pressed { background: var(--bg-5); color: var(--text-strong); }
+.ar-hcell.is-sorted { color: var(--text-primary); }
+.ar-hcell .arrow { margin-left: auto; color: var(--accent-text); }
+.ar-hcell.num { justify-content: flex-end; }
+.ar-hcell.num .arrow { margin-left: 4px; }
+.ar-body { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.ar-row { display: flex; height: 26px; align-items: center; background-color: var(--bg-2); white-space: nowrap; }
+.ar-row.alt { background-color: var(--bg-2-alt); }
+.ar-row > .c { padding: 0 8px; display: flex; align-items: center; gap: 6px; overflow: hidden; height: 100%; }
+.ar-row > .c.num { justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.ar-row .meta { color: var(--text-secondary); }
+.ar-row.off { color: var(--text-inactive); }
+.ar-row.off .meta { color: var(--text-inactive); }
+.ar-row.is-hover { color: var(--text-strong); }
+/* conflitos: cores do MO2 compostas por cima da base/alternância */
+.ar-row.ovw  { background-image: linear-gradient(var(--conflict-overwriting), var(--conflict-overwriting)); }
+.ar-row.ovwn { background-image: linear-gradient(var(--conflict-overwritten), var(--conflict-overwritten)); }
+.ar-row.ovwa { background-image: linear-gradient(var(--conflict-overwriting-archive), var(--conflict-overwriting-archive)); }
+.ar-row.ovwna{ background-image: linear-gradient(var(--conflict-overwritten-archive), var(--conflict-overwritten-archive)); }
+.ar-row.rel  { background-image: linear-gradient(var(--related-highlight), var(--related-highlight)); }
+/* ::item:selected:active / :!active */
+.ar-row.is-selected { background: var(--bg-2); background-image: linear-gradient(var(--selection), var(--selection)); color: var(--text-strong); }
+.ar-row.is-selected.alt { background-color: var(--bg-2-alt); }
+.ar-row.is-selected .meta { color: var(--text-primary); }
+.ar-row.is-selected-inactive { background-image: linear-gradient(var(--selection-inactive), var(--selection-inactive)); color: var(--text-strong); }
+.ar-row.is-selected-inactive .meta { color: var(--text-primary); }
+/* separador do MO2 (cor via configuração de separador) */
+.ar-row.sep { background: var(--separator-bg); color: var(--text-strong); font-weight: 600; border-top: 1px solid var(--bg-1); }
+.ar-row.sep .branch { color: var(--accent-text); }
+.ar-row.sep .meta { color: var(--text-secondary); font-weight: 400; font-size: 12px; }
+.ar-row .branch { width: 12px; color: var(--text-secondary); display: flex; justify-content: center; flex: none; }
+.ar-row .indent { width: 20px; flex: none; }
+.ar-row .ico { color: var(--text-secondary); }
+.ar-row.off .ico { color: var(--text-disabled); }
+.ar-row.overwrite-row { color: var(--text-secondary); font-style: italic; }
+
+/* ---------- QScrollBar */
+.ar-vscroll { position: absolute; top: 0; right: 0; bottom: 0; width: 12px; background: var(--bg-2); border-left: 1px solid var(--border-subtle); }
+.ar-vscroll .h { position: absolute; left: 2px; right: 2px; border-radius: var(--radius-md); background: var(--bg-5); }
+.ar-vscroll .h.is-hover { background: var(--border-strong); }
+.ar-vscroll .h.is-pressed { background: var(--text-inactive); }
+
+/* ---------- QToolTip */
+.ar-tooltip { display: inline-block; padding: 6px 8px; background: var(--surface-tooltip); border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  color: var(--text-primary); font-size: 12px; line-height: 16px; max-width: 320px; }
+.ar-tooltip b { color: var(--text-strong); font-weight: 600; }
+
+/* ---------- QMenu */
+.ar-menu { display: inline-block; min-width: 260px; padding: 4px; background: var(--surface-menu); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); }
+.ar-mi { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 12px 0 8px; border-radius: var(--radius-md); color: var(--text-primary); white-space: nowrap; }
+.ar-mi .ic { width: 16px; color: var(--text-secondary); display: flex; justify-content: center; }
+.ar-mi .sc { margin-left: auto; padding-left: 24px; color: var(--text-secondary); font-size: 12px; }
+.ar-mi.is-hover { background: var(--selection); color: var(--text-strong); }
+.ar-mi.is-hover .ic, .ar-mi.is-hover .sc { color: var(--text-primary); }
+.ar-mi.is-disabled { color: var(--text-disabled); }
+.ar-mi.is-disabled .ic, .ar-mi.is-disabled .sc { color: var(--text-disabled); }
+.ar-mi .sub { margin-left: auto; color: var(--text-secondary); }
+.ar-msep { height: 1px; background: var(--border); margin: 4px 6px; }
+
+/* ---------- chrome */
+.ar-statusbar { display: flex; align-items: center; gap: 16px; height: 24px; padding: 0 10px; background: var(--bg-1); border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 12px; }
+.ar-splitter { background: var(--bg-1); }
+
+/* ---------- spec annotations (somente prévias) */
+.spec { font-family: var(--font-sans); color: var(--text-primary); background: var(--bg-1); padding: 20px 24px; }
+.spec * { box-sizing: border-box; }
+.spec-grid { display: grid; gap: 18px 20px; align-items: start; }
+.spec-cell { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.spec-k { font-family: var(--font-mono); font-size: 11px; line-height: 15px; color: var(--accent-text); }
+.spec-v { font-family: var(--font-mono); font-size: 11px; line-height: 15px; color: var(--text-secondary); white-space: pre; }
+.spec-h { font-size: 12px; font-weight: 600; color: var(--text-secondary); letter-spacing: .02em; margin: 0 0 10px; }
+.spec-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+</style><meta charset="utf-8"><title>ColumnHeader — Ardósia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:var(--bg-0)}</style>
+</head><body>
+<div class="ar spec"><div class="spec-h">QHeaderView::section</div><div class="spec-grid" style="grid-template-columns:repeat(5,minmax(0,1fr))"><div class="spec-cell"><div class="ar-view" style="width:150px;border-radius:4px"><div class="ar-head" style="border-bottom:none"><div class="ar-hcell " style="width:100%">Categoria</div></div></div><div><div class="spec-k">normal</div><div class="spec-v">bg bg-1 · h 26
+texto text-secondary
+9pt 600 · pad 0 8
+border-right border-subtle
+border-bottom border</div></div></div><div class="spec-cell"><div class="ar-view" style="width:150px;border-radius:4px"><div class="ar-head" style="border-bottom:none"><div class="ar-hcell is-hover" style="width:100%">Categoria</div></div></div><div><div class="spec-k">:hover</div><div class="spec-v">bg bg-4
+color text-strong</div></div></div><div class="spec-cell"><div class="ar-view" style="width:150px;border-radius:4px"><div class="ar-head" style="border-bottom:none"><div class="ar-hcell is-pressed" style="width:100%">Categoria</div></div></div><div><div class="spec-k">:pressed</div><div class="spec-v">bg bg-5</div></div></div><div class="spec-cell"><div class="ar-view" style="width:150px;border-radius:4px"><div class="ar-head" style="border-bottom:none"><div class="ar-hcell is-sorted" style="width:100%">Prioridade<span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 14l5-5 5 5"/></svg></span></div></div></div><div><div class="spec-k">ordenado ↑</div><div class="spec-v">::up-arrow sort-up-*.svg
+(accent-text) 12px
+texto text-primary</div></div></div><div class="spec-cell"><div class="ar-view" style="width:150px;border-radius:4px"><div class="ar-head" style="border-bottom:none"><div class="ar-hcell is-sorted" style="width:100%">Prioridade<span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7 10l5 5 5-5"/></svg></span></div></div></div><div><div class="spec-k">ordenado ↓</div><div class="spec-v">::down-arrow
+sort-down-*.svg</div></div></div></div></div>
+</body></html>
