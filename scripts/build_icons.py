@@ -39,4 +39,19 @@ TOOLBAR = {
 for n, body in TOOLBAR.items():
     c = '#E5B350' if n == 'problems' else '#97A2B0'
     w(f'tb-{n}.svg', f'<g stroke="{c}" stroke-width="1.6">{body}</g>', '0 0 24 24')
+# Botões da janela principal: grade de 24px, traço de 1,7 e tinta text-primary, como o texto dos botões
+BUTTONS = {
+ 'options': '<circle cx="12" cy="12" r="2.6"/><path d="M12 4v2.4M12 17.6V20M4 12h2.4M17.6 12H20M6.4 6.4l1.7 1.7M15.9 15.9l1.7 1.7M6.4 17.6l1.7-1.7M15.9 8.1l1.7-1.7"/>',
+ 'folder': '<path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/>',
+ 'restore': '<path d="M8.5 5.5 4 10l4.5 4.5"/><path d="M4.5 10H14a5 5 0 0 1 0 10h-2.5"/>',
+ 'backup': '<path d="M12 4v10M8 10.5l4 4 4-4"/><path d="M4.5 15.5V18a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2.5"/>',
+ 'sort': '<path d="M7 7h10M9 12h6M11 17h2"/>',
+ 'refresh': TOOLBAR['refresh'],
+ 'link': '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+ 'clear': '<path d="M7 7l10 10M17 7 7 17"/>',
+}
+for n, body in BUTTONS.items():
+    w(f'btn-{n}.svg', f'<g stroke="#D9DFE6" stroke-width="1.7">{body}</g>', '0 0 24 24')
+# Executar fica sobre o acento: tinta text-on-accent
+w('btn-run.svg', '<path d="M8 5.5v13l10-6.5z" fill="#14181D" stroke="#14181D" stroke-width="1.7"/>', '0 0 24 24')
 print('ícones ok')

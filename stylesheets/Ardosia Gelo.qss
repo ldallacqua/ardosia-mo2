@@ -91,6 +91,19 @@ QPushButton#startButton:pressed  { background: #5DAED6; border-color: #5DAED6; }
 QPushButton#startButton:focus    { border-color: #F2F5F8; }
 QPushButton#startButton:disabled { background: #262C35; border-color: #252B33; color: #525B67; }
 
+/* Ícones dos botões da janela principal */
+#listOptionsBtn { qproperty-icon: url(./ardosia/btn-options.svg); }
+#openFolderMenu { qproperty-icon: url(./ardosia/btn-folder.svg); }
+#restoreModsButton, #restoreButton { qproperty-icon: url(./ardosia/btn-restore.svg); }
+#saveModsButton, #saveButton { qproperty-icon: url(./ardosia/btn-backup.svg); }
+#sortButton { qproperty-icon: url(./ardosia/btn-sort.svg); }
+#dataTabRefresh, #btnRefreshDownloads { qproperty-icon: url(./ardosia/btn-refresh.svg); }
+#clearFiltersButton { qproperty-icon: url(./ardosia/btn-clear.svg); }
+#startButton { qproperty-icon: url(./ardosia/btn-run.svg); }
+#linkButton { qproperty-icon: url(./ardosia/btn-link.svg); }
+#listOptionsBtn, #openFolderMenu, #restoreModsButton, #restoreButton, #saveModsButton, #saveButton, #sortButton,
+#dataTabRefresh, #btnRefreshDownloads, #clearFiltersButton, #startButton, #linkButton { qproperty-iconSize: 16px 16px; }
+
 /* O layout dos botões deste diálogo herda spacing 0 no MO2, e o QSS não define spacing de layout */
 #QueryOverwriteDialog QPushButton { margin-left: 8px; }
 
