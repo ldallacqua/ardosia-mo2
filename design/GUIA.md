@@ -4,7 +4,7 @@ As três versões de acento são os **temas** deste sistema. Troque o tema na p�
 
 ## Princípios
 
-1. **As cores do MO2 têm prioridade.** O MO2 pinta o fundo da linha inteira para indicar conflitos, plugins relacionados e separadores. O tema nunca define `background` em `::item` (nem em `:hover`). Fundo só na view (`background`, `alternate-background-color`) e na seleção.
+1. **As cores do MO2 têm prioridade.** O MO2 pinta o fundo da linha inteira para indicar conflitos, plugins relacionados e separadores. O tema nunca define `background` nem `border` em `::item`: com qualquer um dos dois, o Qt descarta a cor do MO2. Fundo só na view (`background`, `alternate-background-color`), na seleção e no hover.
 2. **Estrutura legível de relance.** Os separadores ficam em `separator-bg`, um tom opaco claramente acima das linhas, com texto `text-strong` e seta de ramo na cor de acento.
 3. **Ativo × desativado.** Mods e plugins ativos ficam em `text-primary`. Os desativados ficam em `text-inactive`, esmaecidos mas ainda legíveis (4,4:1).
 4. **Acento com moderação.** `accent` aparece só em: botão Executar, checkbox marcado, indicador da aba ativa, borda de foco, seta de ordenação e seta dos separadores. Nunca em grandes áreas.
@@ -77,16 +77,17 @@ Família: `"Inter Variable", "Inter", "Segoe UI Variable Text", "Segoe UI"`. A I
 
 ## Espaçamento, dimensões e raios
 
-- Linha de lista: **26px** (texto de 18px + `padding: 4px 8px` no `::item`). Cabeçalho: 26px. Controles: 28px. Abas: 30px. Toolbar: botões de 36px com ícone de 24px.
+- Linha de lista: **26px** (texto de 18px + `padding: 4px 0` no `::item`). Sem `border` no `::item`, o texto vem do estilo nativo, que ignora o padding lateral; por isso o afastamento entre checkbox e texto sai do próprio checkbox. Cabeçalho: 26px. Controles: 28px. Abas: 30px. Toolbar: botões de 36px com ícone de 24px.
 - Escala de espaçamento: 2 · 4 · 6 · 8 · 12 · 16 · 24px. Painéis com 8–10px de margem; controles na mesma barra com 8px de gap.
+- O MO2 usa spacing de 2px em volta das listas, e o QSS não define spacing de layout. Por isso as listas têm margem de 6px, o painel das abas tem `padding-bottom` de 8px e o splitter central tem `padding-bottom` de 6px, o que completa o gap de 8px da escala.
 - Raios: `radius-sm` 3px (checkbox), `radius-md` 4px (botões, campos, handle, item de menu), `radius-lg` 6px (painel, menus, tooltip, grupos). As abas têm topo reto, porque a borda de acento de 2px fazia uma curva ruim no raio.
 - Listas e log têm cantos retos: o Qt não recorta os widgets filhos, então cabeçalho e linhas cobririam a curva e abririam um buraco na borda.
 - Todas as bordas têm 1px. A única exceção é o indicador da aba ativa: `border-top: 2px` em `accent`.
-- Checkbox de 16px (o padrão do Qt é 13px). Scrollbar de 12px, com handle de 8px e sem setas.
+- Checkbox de 16px (o padrão do Qt é 13px); nas listas, 14px e em imagem (`lv-*`), porque em escala de 150% uma lista pode cair em meio pixel, e aí a caixa desenhada pelo QSS sai com as bordas cortadas. Scrollbar de 12px, com handle de 8px e sem setas.
 
 ## Iconografia
 
-O tema traz 40 SVGs exportados com tamanho intrínseco de 64px no grupo de assets **QSS**. São 19 de controles, desenhados em 16px: check (escuro, para ir sobre o acento), parcial, desabilitado, chevrons neutros e, para cada acento, setas de ordenação e de ramo da árvore. Os outros 21 são desenhados em 24px: 12 da barra de ferramentas (`tb-*`) e 9 dos botões da janela principal (`btn-*`). O MO2 não traz o plugin `iconengines/qsvgicon`, então o Qt rasteriza o SVG no tamanho intrínseco e reescala; com 16px, os ícones ficariam borrados em telas acima de 100%. Por isso, toda regra com `image` precisa de `width` e `height` no .qss. Referencie-os com caminho relativo à pasta do tema, por exemplo `url(./ardosia/check.svg)`.
+O tema traz 55 SVGs exportados com tamanho intrínseco de 64px no grupo de assets **QSS**. São 19 de controles, desenhados em 16px: check (escuro, para ir sobre o acento), parcial, desabilitado, chevrons neutros e, para cada acento, setas de ordenação e de ramo da árvore. Outros 15 são os checkboxes das listas (`lv-*`), desenhados em 14px, com caixa e glifo na mesma imagem: 3 neutros e 4 por acento. Os 21 restantes são desenhados em 24px: 12 da barra de ferramentas (`tb-*`) e 9 dos botões da janela principal (`btn-*`). O MO2 não traz o plugin `iconengines/qsvgicon`, então o Qt rasteriza o SVG no tamanho intrínseco e reescala; com 16px, os ícones ficariam borrados em telas acima de 100%. Por isso, toda regra com `image` precisa de `width` e `height` no .qss. Referencie-os com caminho relativo à pasta do tema, por exemplo `url(./ardosia/check.svg)`.
 
 Os ícones da toolbar são trocados com `#actionSettings { qproperty-icon: url(...); }`: o MO2 lê esses seletores e aplica o ícone na barra e no menu. Eles têm tinta fixa em `text-secondary`, porque o QSS não recolore ícones; Problemas usa `log-warning`. Os glifos das colunas Conflitos/Flags, o selo numérico de Problemas e os ícones dos executáveis fixados vêm do próprio MO2.
 
@@ -94,7 +95,7 @@ Os ícones da toolbar são trocados com `#actionSettings { qproperty-icon: url(.
 
 - **Destaque dos separadores.** Uma regra QSS não consegue selecionar só as linhas de separador. O fundo vem da cor de separador do MO2 (use `separator-bg`). A seta de acento vem de `::branch`, e o peso do texto depende da versão do MO2. Não dá para dar altura extra a uma única linha: a altura é uniforme.
 - **Mods desativados esmaecidos.** O próprio MO2 pinta esse texto. `text-inactive` é a referência visual, e nas listas de plugins o comportamento é o mesmo.
-- **Hover nas listas.** Se você definir `::item:hover { background }`, a cor de conflito some sob o cursor. Por isso o tema muda só `color`.
+- **Hover nas listas.** O `::item:hover` tem fundo próprio, senão o Windows pinta o hover de azul. O custo é que a linha sob o cursor perde a cor de conflito ou de separador enquanto o cursor estiver nela.
 - **Barra de título.** É nativa do Windows e fica fora do QSS. O plugin opcional `plugin/ArdosiaTweaks.py` a pinta em `bg-0`, com texto `text-secondary`.
 - **Espaçamento entre letras.** O FreeType do Qt no Windows usa hinting total por padrão e arredonda a largura de cada letra para pixels inteiros. O QSS não define hinting; é o mesmo plugin que pede `PreferNoHinting`.
 - **Placeholder dos campos.** A cor vem da paleta do Qt (PlaceholderText), não de uma propriedade do QSS. O valor de referência é `text-inactive`.

@@ -50,8 +50,8 @@ for i, (name, fname) in enumerate([('Âmbar', 'Ardosia Ambar'), ('Gelo', 'Ardosi
  *
  * Separadores: clique direito no separador > Select Color... > #2A3546
  *
- * Regra do tema: nenhum background em ::item / ::item:hover, para não
- * cobrir as cores de conflito e de separador que o MO2 pinta nas linhas.
+ * Regra do tema: nenhum background nem border em ::item, para não
+ * descartar as cores de conflito e de separador que o MO2 pinta nas linhas.
  */
 
 '''

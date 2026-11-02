@@ -27,7 +27,7 @@ Base cinza-azulada, uma única cor de destaque e os conflitos sempre à vista.
 ## Por que Ardósia
 
 - **Confortável por horas.** A base é cinza-azulada, nunca preto puro, com texto principal em contraste de 12,1:1 sobre as listas.
-- **As cores do MO2 mandam.** O tema não define fundo para os itens da lista, nem em hover. Só a seleção tem fundo próprio, então as cores de conflito continuam aparecendo.
+- **As cores do MO2 mandam.** O tema não define fundo para os itens da lista. Só a seleção e a linha sob o cursor têm fundo próprio, então as cores de conflito e de separador continuam aparecendo.
 - **Destaque com moderação.** O acento aparece só onde importa: botão Executar, checkbox marcado, aba ativa, foco, seta de ordenação e seta dos separadores.
 - **Estrutura de relance.** Os separadores têm um tom próprio e seta na cor de destaque, e os mods desativados ficam esmaecidos, mas legíveis.
 - **Ícones próprios.** Na barra de ferramentas e nos botões da janela principal, os ícones coloridos do MO2 dão lugar a desenhos em linha, em um único tom.

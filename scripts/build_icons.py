@@ -20,6 +20,20 @@ for t, c in [('ambar', '#E9B35E'), ('gelo', '#8DCDEE'), ('esmeralda', '#4FD1AA')
     # ::branch ocupa o recuo de 20px da árvore: a margem no viewBox mantém o desenho em escala 1:1
     w(f'branch-closed-{t}.svg', f'<path d="M6.5 4.5 10 8l-3.5 3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
     w(f'branch-open-{t}.svg', f'<path d="M4.5 6.5 8 10l3.5-3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
+# Checkbox das listas: caixa e glifo na mesma imagem. Em escala de 150%, uma lista pode cair em meio pixel, e a caixa desenhada
+# pelo QSS sairia com as bordas borradas ou cortadas; a imagem o Qt alinha ao pixel. A folga de 0,5 evita o corte na borda da célula.
+GLYPH = '<path d="M3.5 8.3 6.6 11.4 12.6 4.8" stroke="{}" stroke-width="2.2" transform="scale(.875)"/>'
+PARTIAL = '<path d="M4 8h8" stroke="#14181D" stroke-width="2.2" transform="scale(.875)"/>'
+def lv(n, fill, line, body=''):
+    w(n, f'<rect x=".5" y=".5" width="13" height="13" rx="2.6" fill="{fill}" stroke="{line}"/>{body}', '0 0 14 14')
+lv('lv-unchecked.svg', '#12161B', '#6B7684')
+lv('lv-unchecked-disabled.svg', 'none', '#323A45')
+lv('lv-checked-disabled.svg', '#2F3640', '#2F3640', GLYPH.format('#7B8696'))
+for t, c, h in [('ambar', '#E2A74A', '#ECB965'), ('gelo', '#7CC6EA', '#98D3F0'), ('esmeralda', '#33C79B', '#52D4AD')]:
+    lv(f'lv-unchecked-hover-{t}.svg', '#12161B', c)
+    lv(f'lv-checked-{t}.svg', c, c, GLYPH.format('#14181D'))
+    lv(f'lv-checked-hover-{t}.svg', h, h, GLYPH.format('#14181D'))
+    lv(f'lv-partial-{t}.svg', c, c, PARTIAL)
 # Barra de ferramentas: mesmos desenhos de build_mockups.py (grade de 24px, traço de 1,6). A tinta é fixa porque o
 # QSS não recolore ícones; Problemas usa log-warning, como no mockup.
 TOOLBAR = {

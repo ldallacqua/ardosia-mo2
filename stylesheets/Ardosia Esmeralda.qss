@@ -16,8 +16,8 @@
  *
  * Separadores: clique direito no separador > Select Color... > #2A3546
  *
- * Regra do tema: nenhum background em ::item / ::item:hover, para não
- * cobrir as cores de conflito e de separador que o MO2 pinta nas linhas.
+ * Regra do tema: nenhum background nem border em ::item, para não
+ * descartar as cores de conflito e de separador que o MO2 pinta nas linhas.
  */
 
 /* ==================== Base ==================== */
@@ -35,6 +35,9 @@ QWidget:disabled { color: #525B67; }     /* text-disabled */
 QMainWindow::separator, QSplitter::handle { background: #171B21; width: 6px; height: 6px; }
 QSplitter::handle:hover { background: rgba(51, 199, 155, 0.12); }   /* accent-subtle */
 QStatusBar { background: #171B21; border-top: 1px solid #323A45; color: #97A2B0; font-size: 9pt; }
+QStatusBar > QLabel { padding-left: 8px; padding-right: 8px; }   /* só os filhos diretos: ícone e texto de Notifications ficam juntos */
+/* QMainWindow ignora a margem da status bar; o splitter central é um QFrame, então o padding dele afasta tudo da borda */
+#categoriesSplitter { padding-bottom: 6px; }
 QStatusBar::item { border: none; }
 
 /* ==================== Barra de ferramentas e menus ==================== */
@@ -131,21 +134,32 @@ QSpinBox::up-arrow   { image: url(./ardosia/chevron-up.svg);   width: 12px; heig
 QSpinBox::down-arrow { image: url(./ardosia/chevron-down.svg); width: 12px; height: 12px; }
 
 /* ==================== Checkboxes (listas e QCheckBox) ==================== */
-QAbstractItemView::indicator, QCheckBox::indicator, QGroupBox::indicator {
+QCheckBox::indicator, QGroupBox::indicator {
   width: 16px; height: 16px; border: 1px solid #6B7684; border-radius: 3px; background: #12161B; }
-QAbstractItemView::indicator:unchecked:hover, QCheckBox::indicator:unchecked:hover { border-color: #33C79B; }
-QAbstractItemView::indicator:checked, QCheckBox::indicator:checked {
+QCheckBox::indicator:unchecked:hover { border-color: #33C79B; }
+QCheckBox::indicator:checked {
   background: #33C79B; border-color: #33C79B; image: url(./ardosia/check.svg); }
-QAbstractItemView::indicator:checked:hover, QCheckBox::indicator:checked:hover { background: #52D4AD; border-color: #52D4AD; }
-QAbstractItemView::indicator:indeterminate, QCheckBox::indicator:indeterminate {
+QCheckBox::indicator:checked:hover { background: #52D4AD; border-color: #52D4AD; }
+QCheckBox::indicator:indeterminate {
   background: #33C79B; border-color: #33C79B; image: url(./ardosia/check-partial.svg); }
-QAbstractItemView::indicator:disabled, QCheckBox::indicator:disabled { background: transparent; border-color: #323A45; }
-QAbstractItemView::indicator:checked:disabled, QCheckBox::indicator:checked:disabled {
+QCheckBox::indicator:disabled { background: transparent; border-color: #323A45; }
+QCheckBox::indicator:checked:disabled {
   background: #2F3640; border-color: #2F3640; image: url(./ardosia/check-disabled.svg); }
+
+/* Listas: caixa em imagem, porque em escala de 150% uma lista pode cair em meio pixel e a caixa desenhada pelo QSS sairia cortada.
+   O texto vem do estilo nativo, que reserva 13px para o checkbox e repinta a linha em volta dele. Com 14px, -3px de deslocamento
+   (o limite da célula) e -1px de margem, ele cabe na área protegida e o texto não anda entre as linhas normais e as com hover */
+QAbstractItemView::indicator { width: 14px; height: 14px; position: relative; left: -3px; margin-right: -1px; image: url(./ardosia/lv-unchecked.svg); }
+QAbstractItemView::indicator:unchecked:hover { image: url(./ardosia/lv-unchecked-hover-esmeralda.svg); }
+QAbstractItemView::indicator:checked { image: url(./ardosia/lv-checked-esmeralda.svg); }
+QAbstractItemView::indicator:checked:hover { image: url(./ardosia/lv-checked-hover-esmeralda.svg); }
+QAbstractItemView::indicator:indeterminate { image: url(./ardosia/lv-partial-esmeralda.svg); }
+QAbstractItemView::indicator:disabled { image: url(./ardosia/lv-unchecked-disabled.svg); }
+QAbstractItemView::indicator:checked:disabled { image: url(./ardosia/lv-checked-disabled.svg); }
 QCheckBox { spacing: 8px; }
 
 /* ==================== Abas ==================== */
-QTabWidget::pane { background: #1C2128; border: 1px solid #323A45; border-radius: 6px; border-top-left-radius: 0; top: -1px; }
+QTabWidget::pane { background: #1C2128; border: 1px solid #323A45; border-radius: 6px; border-top-left-radius: 0; top: -1px; padding-bottom: 8px; }
 QTabBar { background: transparent; }   /* deixa a borda do painel aparecer sob as abas não selecionadas */
 QTabBar::tab { background: transparent; color: #97A2B0; border: 1px solid transparent; border-bottom: none;
   border-top: 2px solid transparent; padding: 6px 16px; margin-right: 2px; }
@@ -162,9 +176,14 @@ QAbstractItemView {
   outline: 0; show-decoration-selected: 1;
 }
 QTreeView { qproperty-indentation: 20; }
-/* NÃO definir background em ::item nem em ::item:hover: o MO2 pinta conflitos/separadores ali */
-QAbstractItemView::item { padding: 4px 8px; border: none; min-height: 18px; }   /* linha de 26px */
-QAbstractItemView::item:hover { color: #F2F5F8; }
+/* O MO2 usa spacing 2 nos layouts em volta das listas, e o QSS não define spacing de layout: a margem completa o gap de 8px */
+#modList, #espList, #bsaList, #dataTree, #downloadView { margin-top: 6px; }
+#modList, #espList, #dataTree, #downloadView, #filters { margin-bottom: 6px; }
+#EditExecutablesDialog #list { margin-top: 5px; }
+/* NÃO definir background nem border em ::item: com qualquer um dos dois, o Qt desenha só a regra do QSS e descarta a cor
+   de conflito/separador do MO2. Em ::item:hover o fundo é o custo aceito: só a linha sob o cursor perde a cor */
+QAbstractItemView::item { padding: 4px 0; min-height: 18px; }   /* linha de 26px. Padding lateral não: sem border, o texto vem do estilo nativo e o checkbox iria para cima dele */
+QAbstractItemView::item:hover { background: rgba(151, 162, 176, 0.10); color: #F2F5F8; }   /* sem isto, o hover fica azul nativo */
 QAbstractItemView::item:selected:active   { background: rgba(51, 199, 155, 0.26); color: #F2F5F8; }
 QAbstractItemView::item:selected:!active  { background: rgba(151, 162, 176, 0.18); color: #F2F5F8; }
 
