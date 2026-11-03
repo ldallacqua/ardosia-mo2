@@ -21,11 +21,12 @@ for t, c in [('ambar', '#E9B35E'), ('gelo', '#8DCDEE'), ('esmeralda', '#4FD1AA')
     w(f'branch-closed-{t}.svg', f'<path d="M6.5 4.5 10 8l-3.5 3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
     w(f'branch-open-{t}.svg', f'<path d="M4.5 6.5 8 10l3.5-3.5" stroke="{c}" stroke-width="2"/>', '-2 -2 20 20')
 # Checkbox das listas: caixa e glifo na mesma imagem. Em escala de 150%, uma lista pode cair em meio pixel, e a caixa desenhada
-# pelo QSS sairia com as bordas borradas ou cortadas; a imagem o Qt alinha ao pixel. A folga de 0,5 evita o corte na borda da célula.
+# pelo QSS sairia com as bordas borradas ou cortadas; a imagem o Qt alinha ao pixel. O raio é pequeno porque o Qt não pinta a cor da
+# linha atrás do checkbox: nas linhas coloridas, o que sobra nos cantos aparece escuro.
 GLYPH = '<path d="M3.5 8.3 6.6 11.4 12.6 4.8" stroke="{}" stroke-width="2.2" transform="scale(.875)"/>'
 PARTIAL = '<path d="M4 8h8" stroke="#14181D" stroke-width="2.2" transform="scale(.875)"/>'
 def lv(n, fill, line, body=''):
-    w(n, f'<rect x=".5" y=".5" width="13" height="13" rx="2.6" fill="{fill}" stroke="{line}"/>{body}', '0 0 14 14')
+    w(n, f'<rect x=".5" y=".5" width="13" height="13" rx="2" fill="{fill}" stroke="{line}"/>{body}', '0 0 14 14')
 lv('lv-unchecked.svg', '#12161B', '#6B7684')
 lv('lv-unchecked-disabled.svg', 'none', '#323A45')
 lv('lv-checked-disabled.svg', '#2F3640', '#2F3640', GLYPH.format('#7B8696'))
